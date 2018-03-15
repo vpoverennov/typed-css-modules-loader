@@ -37,13 +37,13 @@ module.exports = function (source, map) {
 }
 
 const dtsContentFormat = (dtsContent, eol) => {
-  if (!dtsContent.resultList || !dtsContent.resultList.length) return 'export default {};'
-  return dtsContent.resultList.join(eol)
+  if (!dtsContent.resultList || !dtsContent.resultList.length) return ''
+  return dtsContent.resultList.join(eol) + eol
 }
 
 const dtsContentWriteFile = (dtsContent, eol) => {
   var outPathDir = path.dirname(dtsContent.outputFilePath)
-  var content = dtsContentFormat(dtsContent, eol) + eol
+  var content = dtsContentFormat(dtsContent, eol)
   if (!isThere(outPathDir)) {
     mkdirp.sync(outPathDir)
   }
